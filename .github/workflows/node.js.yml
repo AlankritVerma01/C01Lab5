@@ -31,6 +31,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm i
+      - run: npm install --global jest
       - run: npm test
 
       - name: Set up MongoDB

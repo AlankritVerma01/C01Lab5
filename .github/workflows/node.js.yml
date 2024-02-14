@@ -32,7 +32,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
       - run: npm install --global jest
-      - run: npm test
 
       - name: Set up MongoDB
         uses: docker://mongo:4.4.6
@@ -44,3 +43,5 @@ jobs:
 
       - name: Run server.js
         run: node server.js
+           
+      - run: npm test

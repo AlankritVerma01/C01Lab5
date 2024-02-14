@@ -38,8 +38,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
       - run: npm install --global jest
-      
-      - name: Run server.js
-        run: node server.js
+
+      - name: Run server.js in background
+        run: node server.js &
+        shell: bash
 
       - run: npm test

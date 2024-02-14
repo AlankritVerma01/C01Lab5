@@ -18,6 +18,12 @@ jobs:
     defaults:
       run:
         working-directory: ./quirknotes/backend
+    
+    services: 
+      mongodb:
+        image: mongo:4.4.6
+        ports: 
+          - 27017:27017
 
     strategy:
       matrix:
@@ -32,16 +38,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
       - run: npm install --global jest
-
-      - name: Set up MongoDB
-        uses: docker://mongo:4.4.6
-        with:
-          mongodb-version: '4.4.6'
-
-      - name: Start MongoDB
-        run: mongod --fork --logpath /tmp/mongodb.log
-
+      
       - name: Run server.js
         run: node server.js
-           
+
       - run: npm test
